@@ -40,3 +40,8 @@ npm-debug.log
 
 # database
 /database
+
+# IDE, Editor
+/.idea
+/.vscode/*
+!/.vscode/extensions.json
