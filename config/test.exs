@@ -1,23 +1,30 @@
 import Config
 
+# Only in tests, remove the complexity from the password hashing algorithm
+config :bcrypt_elixir, :log_rounds, 1
+
 # Configure your database
 #
 # The MIX_TEST_PARTITION environment variable can be used
 # to provide built-in test partitioning in CI environment.
 # Run `mix help test` for more information.
 config :phoenix_sample, PhoenixSample.Repo,
-  username: "postgres",
-  password: "postgres",
-  hostname: "localhost",
-  database: "phoenix_sample_test#{System.get_env("MIX_TEST_PARTITION")}",
+  hostname: System.get_env("DATABASE_HOST", "127.0.0.1"),
+  port: (case System.get_env("DATABASE_PORT") do
+    nil -> 3306
+    value -> String.to_integer(value)
+  end),
+  username: System.get_env("DATABASE_USER", "root"),
+  password: System.get_env("DATABASE_PASSWORD", ""),
+  database: "#{System.get_env("DATABASE_NAME_TEST", "phoenix_sample_test")}#{System.get_env("MIX_TEST_PARTITION")}",
   pool: Ecto.Adapters.SQL.Sandbox,
   pool_size: 10
 
 # We don't run a server during test. If one is required,
 # you can enable the server option below.
 config :phoenix_sample, PhoenixSampleWeb.Endpoint,
-  http: [ip: {127, 0, 0, 1}, port: 4002],
-  secret_key_base: "T55efocYcuZMrJx7eiKA3XjCES6qn091DNFXjkZ9NKK154V4lrqty3OFIY5uCLGk",
+  http: [ip: {0, 0, 0, 0}, port: 4002],
+  secret_key_base: System.get_env("SECRET_KEY_BASE"),
   server: false
 
 # In test we don't send emails.
