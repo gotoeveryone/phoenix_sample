@@ -24,7 +24,7 @@ config :phoenix_sample, PhoenixSample.Repo,
 # you can enable the server option below.
 config :phoenix_sample, PhoenixSampleWeb.Endpoint,
   http: [ip: {0, 0, 0, 0}, port: 4002],
-  secret_key_base: "T55efocYcuZMrJx7eiKA3XjCES6qn091DNFXjkZ9NKK154V4lrqty3OFIY5uCLGk",
+  secret_key_base: System.get_env("SECRET_KEY_BASE"),
   server: false
 
 # In test we don't send emails.
