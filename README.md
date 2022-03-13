@@ -1,5 +1,7 @@
 # PhoenixSample
 
+![Build Status](https://github.com/gotoeveryone/phoenix_sample/workflows/Build/badge.svg)
+
 ## Requirements
 
 - Docker
