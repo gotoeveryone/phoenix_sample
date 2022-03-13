@@ -16,5 +16,11 @@ $ docker-compose up
 ## Migration
 
 ```console
-$ mix ecto.migrate
+$ docker-compose exec app mix ecto.migrate
+```
+
+## Test
+
+```console
+$ docker-compose exec app mix test
 ```
