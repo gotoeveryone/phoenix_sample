@@ -24,3 +24,9 @@ $ docker-compose exec app mix ecto.migrate
 ```console
 $ docker-compose exec app mix test
 ```
+
+## Generate secret
+
+```console
+$ docker-compose exec app mix phx.gen.secret
+```
