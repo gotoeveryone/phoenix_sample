@@ -26,7 +26,7 @@ jobs:
       - name: Set up Erlang and Elixir
         uses: erlef/setup-beam@v1
         with:
-          otp-version: 24.1
+          otp-version: 24.3.1
           elixir-version: 1.13.3
       - name: Cache dependencies
         uses: actions/cache@v2
@@ -39,6 +39,6 @@ jobs:
         if: ${{ steps.app-cache.outputs.cache-hit != 'true' }}
         run: mix deps.get
       - name: Run setup
-        run: mix ecto.reset
+        run: mix ecto.create
       - name: Run test
         run: mix test
