@@ -8,12 +8,15 @@ defmodule PhoenixSample.Application do
   @impl true
   def start(_type, _args) do
     children = [
+      # Start the App State
+      PhoenixSample.Count,
       # Start the Ecto repository
       PhoenixSample.Repo,
       # Start the Telemetry supervisor
       PhoenixSampleWeb.Telemetry,
       # Start the PubSub system
       {Phoenix.PubSub, name: PhoenixSample.PubSub},
+      PhoenixSample.Presence,
       # Start the Endpoint (http/https)
       PhoenixSampleWeb.Endpoint
       # Start a worker by calling: PhoenixSample.Worker.start_link(arg)

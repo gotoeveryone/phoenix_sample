@@ -24,6 +24,8 @@ defmodule PhoenixSampleWeb do
       import Plug.Conn
       import PhoenixSampleWeb.Gettext
       alias PhoenixSampleWeb.Router.Helpers, as: Routes
+
+      import Phoenix.LiveView.Controller
     end
   end
 
