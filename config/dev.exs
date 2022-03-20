@@ -3,10 +3,11 @@ import Config
 # Configure your database
 config :phoenix_sample, PhoenixSample.Repo,
   hostname: System.get_env("DATABASE_HOST", "127.0.0.1"),
-  port: (case System.get_env("DATABASE_PORT") do
-    nil -> 3306
-    value -> String.to_integer(value)
-  end),
+  port:
+    (case System.get_env("DATABASE_PORT") do
+       nil -> 3306
+       value -> String.to_integer(value)
+     end),
   username: System.get_env("DATABASE_USER", "root"),
   password: System.get_env("DATABASE_PASSWORD", ""),
   database: System.get_env("DATABASE_NAME", "phoenix_sample_dev"),

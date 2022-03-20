@@ -10,13 +10,15 @@ config :bcrypt_elixir, :log_rounds, 1
 # Run `mix help test` for more information.
 config :phoenix_sample, PhoenixSample.Repo,
   hostname: System.get_env("DATABASE_HOST", "127.0.0.1"),
-  port: (case System.get_env("DATABASE_PORT") do
-    nil -> 3306
-    value -> String.to_integer(value)
-  end),
+  port:
+    (case System.get_env("DATABASE_PORT") do
+       nil -> 3306
+       value -> String.to_integer(value)
+     end),
   username: System.get_env("DATABASE_USER", "root"),
   password: System.get_env("DATABASE_PASSWORD", ""),
-  database: "#{System.get_env("DATABASE_NAME_TEST", "phoenix_sample_test")}#{System.get_env("MIX_TEST_PARTITION")}",
+  database:
+    "#{System.get_env("DATABASE_NAME_TEST", "phoenix_sample_test")}#{System.get_env("MIX_TEST_PARTITION")}",
   pool: Ecto.Adapters.SQL.Sandbox,
   pool_size: 10
 
