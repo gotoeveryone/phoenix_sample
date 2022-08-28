@@ -10,23 +10,23 @@
 
 ```console
 $ cp .env.example .env
-$ docker-compose up
+$ docker compose up
 ```
 
 ## Migration
 
 ```console
-$ docker-compose exec app mix ecto.migrate
+$ docker compose exec app mix ecto.migrate
 ```
 
 ## Test
 
 ```console
-$ docker-compose exec app mix test
+$ docker compose exec app mix test
 ```
 
 ## Generate secret
 
 ```console
-$ docker-compose exec app mix phx.gen.secret
+$ docker compose exec app mix phx.gen.secret
 ```

@@ -45,3 +45,6 @@ npm-debug.log
 /.idea
 /.vscode/*
 !/.vscode/extensions.json
+
+# asdf
+/.tool-versions
