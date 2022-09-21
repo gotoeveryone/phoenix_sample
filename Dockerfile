@@ -11,4 +11,13 @@ RUN apt-get clean && \
 RUN mix local.hex --force && \
   mix local.rebar --force
 
+COPY mix.exs /var/app
+COPY mix.lock /var/app
+
+RUN mix deps.get
+
+COPY . /var/app
+
+RUN mix compile
+
 CMD ["mix", "phx.server"]

@@ -5,7 +5,7 @@ config :phoenix_sample, PhoenixSample.Repo,
   hostname: System.get_env("DATABASE_HOST", "127.0.0.1"),
   port:
     (case System.get_env("DATABASE_PORT") do
-       nil -> 3306
+       nil -> 5432
        value -> String.to_integer(value)
      end),
   username: System.get_env("DATABASE_USER", "root"),

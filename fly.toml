@@ -1,0 +1,7 @@
+app = "phoenix-sample"
+kill_signal = "SIGTERM"
+
+[[services]]
+  internal_port = 4000
+[deploy]
+  release_command = "mix ecto.migrate"
