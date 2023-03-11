@@ -1,0 +1,9 @@
+apiVersion: v1
+data:
+  SECRET_KEY_BASE: ZeBVV1W8VKm18LgNoF97Gz6klmo9dtCP+zw0fAWwOO++5Ro2Sp8BG86hg65yn9Xk
+kind: ConfigMap
+metadata:
+  creationTimestamp: null
+  labels:
+    io.kompose.service: app-env
+  name: env

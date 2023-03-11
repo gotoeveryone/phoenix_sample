@@ -1,0 +1,63 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert -f compose.yml -o manifests/
+    kompose.version: 1.26.0 (40646f47)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: app
+  name: app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: app
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: kompose convert -f compose.yml -o manifests/
+        kompose.version: 1.26.0 (40646f47)
+      creationTimestamp: null
+      labels:
+        io.kompose.service: app
+    spec:
+      containers:
+        - args:
+            - sh
+            - -c
+            - mix ecto.migrate && mix phx.server
+          workingDir: /var/app
+          env:
+            - name: DATABASE_HOST
+              value: database
+            - name: DATABASE_PORT
+              value: "3306"
+            - name: DATABASE_NAME
+              value: phoenix_sample_dev
+            - name: SECRET_KEY_BASE
+              valueFrom:
+                configMapKeyRef:
+                  key: SECRET_KEY_BASE
+                  name: env
+            - name: TZ
+              value: Asia/Tokyo
+          image: phoenix_sample-app:0.1.0
+          name: app
+          ports:
+            - containerPort: 4000
+          resources: {}
+          volumeMounts:
+            - mountPath: /var/app/deps
+              name: deps
+      restartPolicy: Always
+      volumes:
+        # - name: app-claim0
+        #   persistentVolumeClaim:
+        #     claimName: app-claim0
+        - name: deps
+          persistentVolumeClaim:
+            claimName: deps
+status: {}

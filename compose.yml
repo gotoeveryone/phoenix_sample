@@ -1,8 +1,10 @@
+version: "3"
 services:
   app:
     build:
       context: .
       dockerfile: Dockerfile
+    image: phoenix_sample-app:0.1.0
     env_file: .env
     volumes:
       - ./:/var/app
